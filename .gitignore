@@ -1,0 +1,9 @@
+Charts.sln
+Charts/bin/
+Charts/obj
+Charts/Properties
+Charts/*.json
+Charts/Charts.csproj
+Charts/Views/Shared/
+Charts/Views/*.cshtml
+.vs/

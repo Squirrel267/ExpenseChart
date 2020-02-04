@@ -1,0 +1,40 @@
+﻿@model Charts.Models.Costs;
+            <h3 style="margin-left:300px;margin-top:15px">График расходов</h3>
+            <div style="margin-left:200px" id="chart1"></div>
+      
+
+    @section scripts{
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Costs Type');
+            data.addColumn('number', 'Costs Percentage');
+            data.addRows([
+                ['Еда', { v: @Model.PerFood, f: '@Model.Food' }],
+                ['Автомобиль', { v: @Model.PerCar, f: '@Model.Car' }],
+                ['Транспорт', { v: @Model.PerTransport, f: '@Model.Transport' }],
+                ['Кредиты', { v: @Model.PerLoans, f: '@Model.Loans' }],
+                ['Коммунальные услуги', { v: @Model.PerUtilities, f: '@Model.Utilities' }],
+                ['Прочее', { v: @Model.PerOther, f: '@Model.Other' }]
+
+            ]);
+
+            var option = {
+                title: '',
+                width: 600,
+                height: 500
+            };
+
+            option.is3D = true;
+            var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+            chart.draw(data, option);
+
+
+        }
+        </script>
+    }
+
